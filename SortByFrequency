@@ -1,0 +1,28 @@
+fun sortStringByFrequency(input: String): String {
+    val charFrequency = mutableMapOf<Char, Int>()
+    for (char in input) {
+        charFrequency[char] = charFrequency.getOrDefault(char, 0) + 1
+    }
+    val comparator = Comparator { a: Char, b: Char ->
+        val freqA = charFrequency[a]!!
+        val freqB = charFrequency[b]!!
+        when {
+            freqA > freqB -> -1
+            freqA < freqB -> 1
+            else -> a.compareTo(b)
+        }
+    }
+    val sortedChars = input.toCharArray()
+    sortedChars.sortWith(comparator)
+    return String(sortedChars)
+}
+
+fun main() {
+    val inputString = "programming"
+    val sortedString = sortStringByFrequency(inputString)
+    println("Input String: $inputString")
+    println("Sorted String by Frequency: $sortedString")
+}
+
+
+
