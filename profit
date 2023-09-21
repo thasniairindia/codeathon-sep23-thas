@@ -1,0 +1,32 @@
+fun findMaxProfit(prices: IntArray): Int {
+    if (prices.size < 2) {
+        return -1 
+    }
+
+    var minPrice = prices[0]
+    var maxProfit = 0
+
+    for (i in 1 until prices.size) {
+        if (prices[i] < minPrice) {
+            minPrice = prices[i]
+        } else {
+            val currentProfit = prices[i] - minPrice
+            if (currentProfit > maxProfit) {
+                maxProfit = currentProfit
+            }
+        }
+    }
+
+    return if (maxProfit > 0) maxProfit else -1
+}
+
+fun main() {
+    val prices = intArrayOf(7, 1, 5, 3, 6, 4)
+    val maxProfit = findMaxProfit(prices)
+    
+    if (maxProfit != -1) {
+        println("Maximum Profit: $maxProfit")
+    } else {
+        println("No profit can be made.")
+    }
+}
